@@ -13,8 +13,13 @@ class VehicleController {
 
     public function getById($id): ?Vehiculo
     {
-        return null;
-        
+        $vehiculos = $this->leerVehiculos();
+        foreach ($vehiculos as $vehiculo) {
+            if ($vehiculo->id === (int)$id) {
+                return $vehiculo;
+            }
+        }
+        return null;  
     }
     
     private function leerVehiculos(){
@@ -43,7 +48,7 @@ class VehicleController {
                 $vehiculos[] = $moto;
             }
         }
-        return vehiculos;
+        return $vehiculos;
     }
 
 }

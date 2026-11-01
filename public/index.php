@@ -1,12 +1,14 @@
 <?php
 declare(strict_types=1);
-
+require_once __DIR__ . '/../vendor/autoload.php';
+use App\Controllers\VehicleController;
 function request(): void
 {   
     $controller = new VehicleController();
     $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
     if ($method === "GET") {
-        $controller->getById($_GET['id'] ?? null);
+        $vehiculo = $controller->getById($_GET['id'] ?? null);
+        require __DIR__ . '/../app/Views/vehiculo_get.php';
     }
     else if ($method === "POST") {
         $controller->store($_POST['jsonPost'] ?? null);
