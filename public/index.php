@@ -11,7 +11,9 @@ function request(): void
         require __DIR__ . '/../app/Views/vehiculo_get.php';
     }
     else if ($method === "POST") {
-        $controller->store($_POST['jsonPost'] ?? null);
+        $vehiculoData = json_decode($_POST['jsonPost'], true);
+        $vehiculos = $controller->store($vehiculoData);
+        require __DIR__ . '/../app/Views/vehiculo_post.php';
     }
 }
 

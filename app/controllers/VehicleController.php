@@ -6,9 +6,31 @@ use App\Models\Moto;
 
 class VehicleController {
     
-    public function store($vehiculoData): ?Vehiculo{
-        
-        return null;       
+    public function store($vehiculoData): array{
+        $vehiculos = $this->leerVehiculos();
+
+            if ($vehiculoData["tipo"] === "coche") {
+                $coche = new Coche(
+                    $vehiculoData["id"],
+                    $vehiculoData["tipo"],
+                    $vehiculoData["marca"],
+                    $vehiculoData["modelo"],
+                    $vehiculoData["anio"],
+                    $vehiculoData["puertas"]
+                );
+                $vehiculos [] = $coche;
+            } elseif ($vehiculoData["tipo"] === "moto") {
+                $moto = new Moto(
+                    $vehiculoData["id"],
+                    $vehiculoData["tipo"],
+                    $vehiculoData["marca"],
+                    $vehiculoData["modelo"],
+                    $vehiculoData["anio"],
+                    $vehiculoData["sidecar"]
+                );
+                $vehiculos [] = $moto;
+            }        
+        return $vehiculos;       
     }
 
     public function getById($id): ?Vehiculo
