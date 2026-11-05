@@ -12,7 +12,7 @@
     <header>
         <h1>Datos de los vehículos</h1>
     </header>
-
+    
     <main>
        <?php foreach ($vehiculos as $vehiculo): ?>
             <ul>
